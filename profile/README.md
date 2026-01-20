@@ -1,92 +1,88 @@
-# 🏫 **SMUS: AI Agent(Custom MCP-driven)를 활용한 상명대학교 통합 정보 허브**
-</br>
+# 🏃‍♂️ 모두의핏 (Fit4All) | NEXUSCORE
 
-## 🟦 프로젝트 목적
+> **"모두를 위한 운동, 모두의핏"**
+> 모든 사람을 위한 체육시설 예약 및 맞춤형 운동 프로그램을 제공하는 종합 스포츠 서비스 플랫폼입니다.
 
-본 과제는 질의응답 수준의 Chatbot을 넘어서 상명대학교라는 특정 도메인에 특화된 통합 정보 시스템을 구축하는 것을 목표로 합니다. 특히 MCP(Model Context Protocol) 기반의 Custom AI 에이전트를 활용하여 대화형 인터페이스 형태를 통해 학생들의 실제 업무 및 학습 활동을 효과적으로 지원하는 에이전틱 시스템을 구현하고자 합니다.
+[![Landing Page](https://img.shields.io/badge/Website-Live_Now-4C6EF5?logo=airplay)](https://all4fit.co.kr) 
+[![Play Store](https://img.shields.io/badge/Google_Play-Get_it_on-green?logo=googleplay)](https://play.google.com/store/apps/details?id=com.fitforeveryone.app&pcampaignid=web_share)
+[![App Store](https://img.shields.io/badge/App_Store-Download-blue?logo=apple)](https://apps.apple.com/kr/app/%EB%AA%A8%EB%91%90%EC%9D%98-%ED%95%8F/id6754742148)
+[![Figma](https://img.shields.io/badge/Figma-Design_System-F24E1E?logo=figma)](https://www.figma.com/design/eyFKN28IKXV25Y28znWMal/%EB%AA%A8%EB%91%90%EC%9D%98%ED%95%8F---%EC%9E%91%0A%EC%97%85-%EC%A7%84%ED%96%89?node-id=106-718)
 
-또한 개인 맞춤형 서비스 제공을 통해 각 학생의 학사 일정을 자동으로 추적하고 미제출 과제를 실시간으로 조회해주는 기능을 제공합니다. 또한 수강 과목, 시험 일정, 학사 공지사항 등을 통합적으로 관리하여 학생들이 학업 관련 정보를 한 곳에서 편리하게 확인하고 관리할 수 있도록 지원합니다. 이를 통해 학생들은 정보 검색에 소요되는 시간을 절감하고 중요한 학사 일정이나 과제 마감일을 놓치지 않으며 보다 효율적인 대학 생활을 할 수 있습니다.
+---
 
-궁극적으로 본 프로젝트는 AI 기술을 활용하여 대학 생활의 편의성을 극대화하고 학습 생산성을 향상시키는 실용적인 솔루션을 제공하는 것을 목적으로 합니다.
+## 📱 프로젝트 통합 개요
 
-</br>
+**모두의핏**은 NEXUSCORE가 총괄 기획하고 CLAPON과 협력하여 개발한 온-오프라인 통합 스포츠 플랫폼입니다. AWS EC2 기반의 **랜딩 페이지**와 Flutter/Supabase/Firebase 기반의 **고성능 모바일 앱**을 통해 사용자에게 끊김 없는 예약 경험을 제공합니다.
 
-## 🟦 프로젝트 내용
+* **Project Lead**: NEXUSCORE (기획, 전략, 총괄 운영)
+* **Development Partner**: CLAPON (서비스 개발 및 인프라 구축 협력)
+* **Platform**: Web (Landing), iOS & Android (App)
 
-**1. 시스템 아키텍처**
-- Backend:
-    - AWS EC2 인스턴스 내에 Spring 프레임워크 기반으로 구축된 MCP Host와 RESTful API 서버를 Docker 컨테이너로 배포했습니다.
-    - Nginx 리버스 프록시와 Certbot을 통한 HTTPS 보안 통신을 적용하여 안전한 데이터 전송 환경을 구성했습니다.
-    - GitHub Actions를 활용한 CI/CD 파이프라인을 구축했습니다.
-- Frontend:
-    - React 프레임워크와 TypeScript를 활용하여 SPA(Single Page Application) 형태의 애플리케이션 구축했습니다.
-    - 학사 대시보드, Chatbot AI 인터페이스, 일정 관리 화면 등을 설계•구현하고, AJAX를 활용하여 MCP Host 및 Backend 서버와 통신했습니다.
-    - Vercel을 통해 자동 배포 파이프라인을 구축했습니다.
-    
-**2. 데이터 수집**
-- AWS Lambda와 API GATEWAY로 구현된 서버리스 크롤링 시스템입니다.
-- 메타 데이터는 AWS RDS에, 파일(pdf, hwp)은 AWS S3에 저장합니다.
-- AWS Lambda를 이용하여 개인화 데이터 및 학교 공용 데이터를 주기적으로 크롤링합니다.
-    
-**3. MCP 서버 개발**
-- FastMCP 프레임워크를 활용하여 상명대학교 도메인에 특화된 MCP 서버를 개발했습니다.
-- Tools 모듈에는 학사 일정 조회, 학교 공지사항 검색, 학식 메뉴 조회, 개인 일정 관리 등 학교생활에 필요한 기능들을 구현했습니다.
-- Prompts 모듈에서는 날짜/시간 처리, 키워드 매칭 등 가이드라인을 제공하여 정확하고 일관된 응답을 제공할 수 있도록 했습니다.
 
-**4. AI 에이전트 시스템 구현**
-- GPT-4o 모델을 활용하여 자연어 처리 능력을 확보하고, Smithery를 통해 MCP 서버와 연결하는 MCP Host를 Spring AI로 구축했습니다.
-- 사용자 질의가 입력되면 LLM이 FastMCP 서버와 통신하여 필요한 MCP Tool을 선택 및 사용하여 자연어로 응답을 구성했습니다.
-- LangGraph를 활용하여 대화 맥락을 관리하고 스트리밍 응답 방식을 적용하여 사용자에게 실시간으로 응답을 제공했습니다.
+---
 
-</br>
+## 👥 Meet the Team (NEXUSCORE)
 
-## 🟦 Team
+본 프로젝트의 기획 및 PM을 담당한 핵심 인력입니다.
 
-| 김재관 | 김정찬 | 김진석 | 맹의현 | 염다인 |
-| --- | --- | --- | --- | --- |
-| <p align="center"><img src="https://avatars.githubusercontent.com/KJaeKwan" width="100" height="100" style="border-radius: 5%;"></p><p align="center"><a href="https://github.com/KJaeKwan"><img src="https://img.shields.io/badge/KJaeKwan-181717?style=for-the-social&logo=github&logoColor=white"/></a></p> | <p align="center"><img src="https://avatars.githubusercontent.com/hwruchan" width="100" height="100" style="border-radius: 5%;"></p><p align="center"><a href="https://github.com/hwruchan"><img src="https://img.shields.io/badge/hwruchan-181717?style=for-the-social&logo=github&logoColor=white"/></a></p> | <p align="center"><img src="https://avatars.githubusercontent.com/jinseok19" width="100" height="100" style="border-radius: 5%;"></p><p align="center"><a href="https://github.com/jinseok19"><img src="https://img.shields.io/badge/jinseok19-181717?style=for-the-social&logo=github&logoColor=white"/></a></p> | <p align="center"><img src="https://avatars.githubusercontent.com/maeng00" width="100" height="100" style="border-radius: 5%;"></p><p align="center"><a href="https://github.com/maeng00"><img src="https://img.shields.io/badge/maeng00-181717?style=for-the-social&logo=github&logoColor=white"/></a></p> | <p align="center"><img src="https://avatars.githubusercontent.com/dainsla" width="100" height="100" style="border-radius: 5%;"></p><p align="center"><a href="https://github.com/dainsla"><img src="https://img.shields.io/badge/dainsla-181717?style=for-the-social&logo=github&logoColor=white"/></a></p> |
-</br>
+| **Lead PM / Strategy** | **Product Manager / Design** |
+| :---: | :---: |
+| <p align="center"><img src="https://avatars.githubusercontent.com/jinseok19" width="100" height="100" style="border-radius: 5%;"></p><p align="center"><a href="https://github.com/jinseok19"><img src="https://img.shields.io/badge/jinseok19-181717?style=for-the-social&logo=github&logoColor=white"/></a></p> | <p align="center"><img src="https://avatars.githubusercontent.com/hwruchan" width="100" height="100" style="border-radius: 5%;"></p><p align="center"><a href="https://github.com/hwruchan"><img src="https://img.shields.io/badge/hwruchan-181717?style=for-the-social&logo=github&logoColor=white"/></a></p> |
+| **김진석 (Kim Jin-seok)** | **김정찬 (Kim Jeong-chan)** |
+| 프로젝트 총괄 및 전략 기획 | 서비스 기획 및 UI/UX 설계 |
 
-## 🟦 Architecture
-<img width="2815" height="1254" alt="Image" src="https://github.com/user-attachments/assets/624c676e-5b5b-4502-9518-1eed73bbafad" />
+---
 
-</br>
-</br>
+## 🎨 Service Journey: 기획에서 서비스까지
 
-## 🚀 Tech Stack
+아이디어 구상부터 최종 배포까지, 프로젝트가 완성되는 전 과정을 시각화했습니다.
 
-### 📌 Framework
+| **1. 화면 기획서** | **2. 디자인 시스템** | **3. 랜딩 페이지** | **4. 앱 화면** |
+| :---: | :---: | :---: | :---: |
+| <img src="images/readme/wireframe.png" width="200" alt="Wireframe"> | <img src="images/readme/design-system.png" width="200" alt="Design System"> | <img src="images/readme/web-preview.jpeg" width="200" alt="Landing Page"> | <img src="images/readme/app-combined.png" width="200" alt="App Screen"> |
+| *UX 흐름 및 와이어프레임* | *Figma 디자인 시스템* | *[all4fit.co.kr](https://all4fit.co.kr)* | *iOS/Android 실서비스* |
 
-<img src="https://img.shields.io/badge/Spring%20Boot-6DB33F?style=for-the-social&logo=springboot&logoColor=white" />
 
-### 📌 Build Tool
 
-<img src="https://img.shields.io/badge/Gradle-02303A?style=for-the-social&logo=Gradle&logoColor=white">
+---
 
-### 📌 Database
+## ✨ 핵심 서비스
 
-<img src="https://img.shields.io/badge/Spring Data JPA-6DB33F?style=for-the-social&logo=Databricks&logoColor=white"> <img src="https://img.shields.io/badge/RDS-527FFF?style=for-the-social&logo=amazonrds&logoColor=white"> <img src="https://img.shields.io/badge/Redis-%23DC382D.svg?style=for-the-social&logo=redis&logoColor=white" />
+### 1. 모바일 앱 (iOS / Android)
+* **Cross-platform**: Flutter를 통한 일관된 사용자 경험 제공
+* **실시간 알림**: Firebase(FCM)를 활용한 예약 및 활동 푸시 알림 구현
+* **데이터 인프라**: Supabase 기반의 고속 데이터 연동 및 인증 시스템
+* **스마트 예약**: 위치 기반 체육시설 실시간 조회 및 즉시 예약 시스템
 
-### 📌 Security
+### 2. 웹 플랫폼 (Landing & Admin)
+* **안정적 배포**: AWS EC2 인프라 및 Nginx Reverse Proxy 환경 구축
+* **정보 제공**: 서비스 제휴 체육시설 리스트 및 플랫폼 가치 전달
+* **최적화**: Vanilla JS 기반의 가볍고 빠른 응답 속도 구현
 
-<img src="https://img.shields.io/badge/Spring Security-6DB33F?style=for-the-social&logo=springsecurity&logoColor=white">
+---
 
-### 📌 Cloud
+## 🛠️ 기술 스택
 
-<img src ="https://img.shields.io/badge/EC2-FF9900?style=for-the-social&logo=amazonec2&logoColor=white"> <img src ="https://img.shields.io/badge/S3-69A31?style=for-the-social&logo=amazons3&logoColor=white"> <img src="https://img.shields.io/badge/RDS-527FFF?style=for-the-social&logo=amazonrds&logoColor=white"> <img src="[https://img.shields.io/badge/CLOVA OCR-03C75A?style=flat](https://img.shields.io/badge/CLOVA%20OCR-03C75A?style=flat)">
+### **Mobile & Backend**
+* **Framework**: Flutter (Dart)
+* **Backend/Database**: Supabase (PostgreSQL, Auth, Storage)
+* **Push Service**: Firebase (Cloud Messaging)
 
-### 📌 API Documentation
+### **Web & Infra**
+* **Landing**: Vanilla JS, HTML5, CSS3
+* **Server**: AWS EC2 (Ubuntu), Nginx
+* **Process Management**: PM2
 
-<img src="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-social&logo=swagger&logoColor=white">
+### **Design**
+* **Tool**: Figma ([Design System](https://www.figma.com/design/eyFKN28IKXV25Y28znWMal/%EB%AA%A8%EB%91%90%0A%EC%9D%98%ED%95%8F---%EC%9E%91%EC%97%85-%EC%A7%84%ED%96%89?node-id=106-718))
 
-### 📌 CI/CD
+---
 
-<img src="https://img.shields.io/badge/GitHub Actions-2088FF?style=for-the-social&logo=githubactions&logoColor=white"> <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-social&logo=docker&logoColor=white"> 
+## 🤝 파트너십 및 문의
+* **Project Lead**: **NEXUSCORE** (넥서스코어)
+* **Development Partner**: **CLAPON** (클랩온)
+* **Official Email**: [nexuscore@nexuscore.co.kr](mailto:nexuscore@nexuscore.co.kr)
+* **Download**: [App Store](https://apps.apple.com/kr/app/%EB%AA%A8%EB%91%90%EC%9D%98-%ED%95%8F/id6754742148) | [Play Store](https://play.google.com/store/apps/details?id=com.fitforeveryone.app&pcampaignid=web_share)
 
-### 📌 Team Collaboration
-
-<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-social&logo=github&logoColor=white"> <img src="https://img.shields.io/badge/Git-F05032?style=for-the-social&logo=git&logoColor=white"> <img src="https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-social&logo=notion&logoColor=white" /> <img src="https://img.shields.io/badge/Discord-%237289DA.svg?style=for-the-social&logo=discord&logoColor=white" /> <img src="https://img.shields.io/badge/Figma-%23F24E1E.svg?style=for-the-social&logo=figma&logoColor=white" />
-
-</br>
-
-<br>
+---
+**Made with ❤️ by NEXUSCORE & CLAPON**
